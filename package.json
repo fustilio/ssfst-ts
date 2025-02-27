@@ -2,18 +2,6 @@
     "name": "ssfst",
     "version": "2.0.0",
     "description": "Subsequential Finite State Transducer. Given an input text, produces a new text by applying a fixed set of rewrite rules.",
-    "main": "index.js",
-    "engines": {
-        "node": ">=12.x"
-    },
-    "scripts": {
-        "test": "nyc jasmine",
-        "coverage": "nyc report --reporter=text-lcov | coveralls"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/deniskyashif/ssfst.git"
-    },
     "keywords": [
         "nlp",
         "transducer",
@@ -21,15 +9,26 @@
         "pattern recognition",
         "text rewriting"
     ],
-    "author": "Denis Kyashif <denis.kyashif@gmail.com> deniskyashif.github.io",
-    "license": "MIT",
+    "homepage": "https://github.com/deniskyashif/ssfst#readme",
     "bugs": {
         "url": "https://github.com/deniskyashif/ssfst/issues"
     },
-    "homepage": "https://github.com/deniskyashif/ssfst#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/deniskyashif/ssfst.git"
+    },
+    "license": "MIT",
+    "author": "Denis Kyashif <denis.kyashif@gmail.com> deniskyashif.github.io",
+    "main": "index.js",
+    "scripts": {
+        "coverage": "vitest run --coverage",
+        "test": "vitest"
+    },
     "devDependencies": {
-        "coveralls": "^3.0.9",
-        "jasmine": "^2.99.0",
-        "nyc": "^15.0.0"
+        "@vitest/coverage-v8": "^3.0.7",
+        "vitest": "^3.0.7"
+    },
+    "engines": {
+        "node": ">=12.x"
     }
 }
