@@ -192,6 +192,22 @@ describe('Subsequential Finite State Transducer from Array', () => {
         expect(transducer.process('prefixsuffix')).toBe('output2');
         expect(transducer.process('prefixothersuffix')).toBe('output1othersuffix'); // LMLS
     });
+
+    it('Should throw error if input dictionary is null for init', () => {
+        expect(() => ssfst.init(null)).toThrowError('The input dictionary should be defined.');
+    });
+
+    it('Should throw error if input dictionary is undefined for init', () => {
+        expect(() => ssfst.init(undefined)).toThrowError('The input dictionary should be defined.');
+    });
+
+    it('Should throw error if input dictionary is null for initAsync', async () => {
+        await expect(() => ssfst.initAsync(null)).rejects.toThrowError('The input dictionary should be defined.');
+    });
+
+    it('Should throw error if input dictionary is undefined for initAsync', async () => {
+        await expect(() => ssfst.initAsync(undefined)).rejects.toThrowError('The input dictionary should be defined.');
+    });
 });
 
 describe('Subsequential Finite State Transducer from Async Iterable', () => {
