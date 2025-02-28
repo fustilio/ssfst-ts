@@ -1,4 +1,5 @@
-const ssfst = require('../index');
+import { describe, it, expect } from 'vitest';
+import * as ssfst from '../src';
 
 describe('Subsequential Finite State Transducer from Array', () => {
     const dict = [
@@ -194,19 +195,19 @@ describe('Subsequential Finite State Transducer from Array', () => {
     });
 
     it('Should throw error if input dictionary is null for init', () => {
-        expect(() => ssfst.init(null)).toThrowError('The input dictionary should be defined.');
+        expect(() => ssfst.init(null as any)).toThrowError('The input dictionary should be defined.');
     });
 
     it('Should throw error if input dictionary is undefined for init', () => {
-        expect(() => ssfst.init(undefined)).toThrowError('The input dictionary should be defined.');
+        expect(() => ssfst.init(undefined as any)).toThrowError('The input dictionary should be defined.');
     });
 
     it('Should throw error if input dictionary is null for initAsync', async () => {
-        await expect(() => ssfst.initAsync(null)).rejects.toThrowError('The input dictionary should be defined.');
+        await expect(() => ssfst.initAsync(null as any)).rejects.toThrowError('The input dictionary should be defined.');
     });
 
     it('Should throw error if input dictionary is undefined for initAsync', async () => {
-        await expect(() => ssfst.initAsync(undefined)).rejects.toThrowError('The input dictionary should be defined.');
+        await expect(() => ssfst.initAsync(undefined as any)).rejects.toThrowError('The input dictionary should be defined.');
     });
 });
 

@@ -1,6 +1,6 @@
 # Subsequential Finite State Transducer
 
-[![Build Status](https://api.travis-ci.org/deniskyashif/ssfst.svg?branch=master)](https://travis-ci.org/deniskyashif/ssfst)
+[![Build Status](https://api.travis-ci.org/deniskyashif/ssfst.svg?branch=master)](https://travis-ci.org/travis-ci.org/deniskyashif/ssfst)
 [![Coverage Status](https://coveralls.io/repos/github/deniskyashif/ssfst/badge.svg?branch=master)](https://coveralls.io/github/deniskyashif/ssfst?branch=master)
 [![Code Climate](https://codeclimate.com/github/deniskyashif/ssfst/badges/gpa.svg)](https://codeclimate.com/github/deniskyashif/ssfst)
 [![Dependencies](https://img.shields.io/badge/dependencies-none-green.svg)](https://www.npmjs.com/package/ssfst)
@@ -120,3 +120,8 @@ npm t
 ## References
 
 This implementation follows the construction presented in ["Efficient Dictionary-Based Text Rewriting using Subsequential Transducers" by S. Mihov, K. Schulz](https://dl.acm.org/doi/abs/10.1017/S1351324905004092)
+
+## About
+
+This implementation is based on the original repository by Denis Kyashif: [https://github.com/deniskyashif/ssfst/tree/master](https://github.com/deniskyashif/ssfst/tree/master).
+

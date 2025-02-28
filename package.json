@@ -1,34 +1,55 @@
 {
-    "name": "ssfst",
-    "version": "2.0.0",
-    "description": "Subsequential Finite State Transducer. Given an input text, produces a new text by applying a fixed set of rewrite rules.",
-    "keywords": [
-        "nlp",
-        "transducer",
-        "finite automata",
-        "pattern recognition",
-        "text rewriting"
-    ],
-    "homepage": "https://github.com/deniskyashif/ssfst#readme",
-    "bugs": {
-        "url": "https://github.com/deniskyashif/ssfst/issues"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/deniskyashif/ssfst.git"
-    },
-    "license": "MIT",
-    "author": "Denis Kyashif <denis.kyashif@gmail.com> deniskyashif.github.io",
-    "main": "index.js",
-    "scripts": {
-        "coverage": "vitest run --coverage",
-        "test": "vitest"
-    },
-    "devDependencies": {
-        "@vitest/coverage-v8": "^3.0.7",
-        "vitest": "^3.0.7"
-    },
-    "engines": {
-        "node": ">=12.x"
-    }
+  "name": "ssfst-ts",
+  "version": "2.0.0",
+  "description": "Subsequential Finite State Transducer. Given an input text, produces a new text by applying a fixed set of rewrite rules.",
+  "keywords": [
+    "nlp",
+    "transducer",
+    "finite automata",
+    "pattern recognition",
+    "text rewriting"
+  ],
+  "homepage": "https://github.com/fustilio/ssfst-ts#readme",
+  "bugs": {
+    "url": "https://github.com/fustilio/ssfst-ts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fustilio/ssfst.git"
+  },
+  "license": "MIT",
+  "author": "Francis Lee",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "coverage": "vitest run --coverage",
+    "test": "vitest",
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "publish-packages": "pnpm build && changeset version && changeset publish",
+    "unpublish-packages": "pnpm unpublish nlb-ts@0.0.0"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^3.0.7",
+    "typescript": "^5.3.3",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.0.7",
+    "@changesets/cli": "^2.27.7",
+    "changeset": "^0.2.6",
+    "tsup": "^8.2.4"
+  },
+  "engines": {
+    "node": ">=12.x"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

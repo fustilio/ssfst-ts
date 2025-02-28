@@ -1,4 +1,5 @@
-const State = require('../src/state');
+import { describe, expect, it } from 'vitest';
+import { State } from '../src/state.ts';
 
 describe('SSFST State Tests', () => {
     it('Invoking the constructor should create an instance', () => {
@@ -29,7 +30,7 @@ describe('SSFST State Tests', () => {
         const state1 = new State();
         const state2 = new State();
         state1.setTransition(state2, 'a', '1');
-        expect(state1.transitions.get('a').next).toBe(state2);
-        expect(state1.transitions.get('a').output).toBe('1');
+        expect(state1.transitions.get('a')?.next).toBe(state2);
+        expect(state1.transitions.get('a')?.output).toBe('1');
     });
 });
