@@ -11,13 +11,13 @@ Check out the [Online Sandbox](https://npm.runkit.com/ssfst).
 ## Usage
 
 ```sh
-npm i --save ssfst
+npm install ssfst
 ```
 
 ## Example: Text Rewriting
 
-```js
-const ssfst = require('ssfst');
+```typescript
+import * as ssfst from 'ssfst';
 
 const spellingCorrector = ssfst.init([
     { input: 'acheive', output: 'achieve'},
@@ -34,13 +34,16 @@ spellingCorrector.process('they acheived a lot'); // => "they achieved a lot"
 
 The `init` factory function takes a collection of pairs and returns a transducer. The transducer can be initialized by any iterable object.
 
-```js
-function* dictGen() {
+```typescript
+import { init } from 'ssfst';
+import { InputEntry } from 'ssfst';
+
+function* dictGen(): Generator<InputEntry> {
     yield { input: 'dog', output: '<a href="https://en.wikipedia.org/wiki/Dog">dog</a>' };
     yield { input: 'fox', output: '<a href="https://en.wikipedia.org/wiki/Fox">fox</a>' };
 }
 
-const transducer = ssfst.init(dictGen());
+const transducer = init(dictGen());
 transducer.process('The quick brown fox jumped over the lazy dog.');
 /* => The quick brown <a href="https://en.wikipedia.org/wiki/Fox">fox</a> jumped over the lazy <a href="https://en.wikipedia.org/wiki/Dog">dog</a>. */
 ```
@@ -61,12 +64,12 @@ Tokyo,Japan
 
 This is the dictionary text file. Each line contains an entry and its input and output values are separated by a comma. We implement a generator function which reads it asynchronously line by line and yields an object which is consumed by the initialization of the transducer.
 
-```js
-const fs = require('fs');
-const readline = require('readline');
-const ssfst = require('ssfst');
+```typescript
+import * as fs from 'fs';
+import * as readline from 'readline';
+import * as ssfst from 'ssfst';
 
-async function* readLinesGenAsync() {
+async function* readLinesGenAsync(): AsyncGenerator<{ input: string, output: string }> {
     const lineReader = readline.createInterface({
         input: fs.createReadStream(__dirname + '/capitals.txt')
     });
@@ -80,7 +83,7 @@ async function* readLinesGenAsync() {
 
 We pass the async iterable to the `initAsync` factory function.
 
-```js
+```typescript
 const transducer = await ssfst.initAsync(readLinesGenAsync());
 ```
 
@@ -88,7 +91,11 @@ const transducer = await ssfst.initAsync(readLinesGenAsync());
 
 The subsequential transducer can also be used to efficiently store key-value pairs.
 
-```js
+```typescript
+import { init } from 'ssfst';
+
+// ... (assuming transducer is initialized as in previous examples)
+
 const val = transducer.process('Sofia'); // => Bulgaria
 const invalid = transducer.process('Unknown Key'); // => Unknown Key
 ```
@@ -97,16 +104,19 @@ If there's no value for a given key, it will return the key itself, which simply
 
 ## Use with TypeScript
 
-```ts
+This project is built with **TypeScript**. You can import and use it in your TypeScript projects as follows:
+
+```typescript
 import * as ssfst from 'ssfst';
 ```
 
 ## Run Locally
 
 ```sh
-git clone https://github.com/deniskyashif/ssfst.git
+git clone https://github.com/fustilio/ssfst-ts.git
 cd ssfst
-npm i
+pnpm install
+pnpm run build # Build the TypeScript project
 ```
 
 Sample implementations can be found in [examples/](https://github.com/deniskyashif/ssfst/tree/master/examples).
@@ -114,7 +124,7 @@ Sample implementations can be found in [examples/](https://github.com/deniskyash
 ## Run the Tests
 
 ```sh
-npm t
+npm test
 ```
 
 ## References
@@ -125,3 +135,8 @@ This implementation follows the construction presented in ["Efficient Dictionary
 
 This implementation is based on the original repository by Denis Kyashif: [https://github.com/deniskyashif/ssfst/tree/master](https://github.com/deniskyashif/ssfst/tree/master).
 
+This version is written in **TypeScript** and uses **Vitest** for testing.
+
+### Topics
+
+[nlp](/topics/nlp) [finite-state-machine](/topics/finite-state-machine) [transducers](/topics/transducers) [search-replace](/topics/search-replace) [rewriting](/topics/rewriting)
